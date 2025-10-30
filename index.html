@@ -26,6 +26,10 @@
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
+
+
+
+
 </head>
 
 <body>
@@ -79,10 +83,13 @@
                     </a>
                     <div class="mobile-menu-right">
                         <a href="#" class="mobile-search-btn search-box-outer"><i class="far fa-search"></i></a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        <button class="navbar-toggler animated-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"><i class="far fa-stream"></i></span>
+                            <span class="toggler-bar top"></span>
+                            <span class="toggler-bar middle"></span>
+                            <span class="toggler-bar bottom"></span>
                         </button>
+
                     </div>
                     <div class="collapse navbar-collapse" id="main_nav">
                         <ul class="navbar-nav ms-auto">
@@ -160,7 +167,8 @@
                                 <a href="#" class="search-box-outer"><i class="far fa-search"></i></a>
                             </div>
                             <div class="header-btn">
-                                 <a href="index.html#quote1" class="theme-btn">GET QUOTE<i class="far fa-arrow-right"></i></a>
+                                <a href="index.html#quote1" class="theme-btn">GET QUOTE<i
+                                        class="far fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1333,6 +1341,24 @@
     <script src="assets/js/wow.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="quote-form.js"></script>
+    <script>
+        // Toggle the animated hamburger icon state
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggler = document.querySelector('.animated-toggler');
+            const nav = document.getElementById('main_nav');
+
+            if (toggler && nav) {
+                toggler.addEventListener('click', function () {
+                    toggler.classList.toggle('active');
+                });
+
+                // Optional: remove 'active' when menu collapses automatically
+                nav.addEventListener('hidden.bs.collapse', function () {
+                    toggler.classList.remove('active');
+                });
+            }
+        });
+    </script>
 
 </body>
 

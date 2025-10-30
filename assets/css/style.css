@@ -3853,5 +3853,140 @@ home 3
   }
 
 }
+/* ✅ FINAL VERIFIED FIX for mobile navbar alignment (Visapos template) */
+@media (max-width: 991px) {
+  .navbar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 10px 15px !important;
+  }
 
+  .navbar .container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
 
+  .navbar-brand {
+    display: flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .navbar-brand img {
+    height: 45px !important;
+    width: auto !important;
+    vertical-align: middle !important;
+  }
+
+  /* ✅ Fix for the wrapper of search + hamburger icons */
+  .mobile-menu-right {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+  }
+
+  /* Style the actual button (hamburger) */
+  .navbar-toggler {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+  }
+
+  /* Style the icon inside it */
+  .navbar-toggler-icon i,
+  .navbar-toggler i,
+  .mobile-menu-right i {
+    font-size: 28px !important;
+    color: #031F4B !important;
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Ensure the header remains aligned when fixed */
+  .navbar.fixed-top {
+    padding: 8px 15px !important;
+  }
+}
+/* ===== Perfect hamburger → X (final) ===== */
+.animated-toggler {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  z-index: 1000;
+}
+
+/* Use positioned bars so rotations are centered */
+.animated-toggler .toggler-bar {
+  position: absolute;
+  left: 50%;
+  transform-origin: center;
+  width: 26px;
+  height: 2px;
+  background-color: #031F4B;
+  border-radius: 2px;
+  transition: transform .32s cubic-bezier(.2,.9,.3,1), opacity .2s;
+  margin: 0;
+  transform: translateX(-50%);
+}
+
+/* stack bars vertically by top offset */
+.animated-toggler .toggler-bar.top {
+  top: 12px;
+}
+
+.animated-toggler .toggler-bar.middle {
+  top: 21px;
+}
+
+.animated-toggler .toggler-bar.bottom {
+  top: 30px;
+}
+
+/* Active state - create a complete centered X */
+.animated-toggler.active .toggler-bar.top {
+  transform: translateX(-50%) rotate(45deg);
+  top: 21px;
+}
+
+.animated-toggler.active .toggler-bar.middle {
+  opacity: 0;
+  transform: translateX(-50%) scaleX(0.1);
+}
+
+.animated-toggler.active .toggler-bar.bottom {
+  transform: translateX(-50%) rotate(-45deg);
+  top: 21px;
+}
+
+/* mobile alignment */
+@media (max-width: 991px) {
+  .mobile-menu-right {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 10px !important;
+  }
+  .animated-toggler { width:44px; height:44px; }
+  .animated-toggler .toggler-bar { width:28px; }
+}
