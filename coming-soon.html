@@ -86,6 +86,25 @@
     <script src="assets/js/countdown.min.js"></script>
     <script src="assets/js/main.js"></script>
 
+   <script>
+        // Toggle the animated hamburger icon state
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggler = document.querySelector('.animated-toggler');
+            const nav = document.getElementById('main_nav');
+
+            if (toggler && nav) {
+                toggler.addEventListener('click', function () {
+                    toggler.classList.toggle('active');
+                });
+
+                // Optional: remove 'active' when menu collapses automatically
+                nav.addEventListener('hidden.bs.collapse', function () {
+                    toggler.classList.remove('active');
+                });
+            }
+        });
+    </script>
+
 </body>
 
 </html>
