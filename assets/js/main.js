@@ -314,7 +314,156 @@ $(window).on('load', function() {
     }
 });
 
-
+// Enhanced Comment Form Handling with Spam Protection
+$(document).ready(function() {
+    let lastCommentTime = 0;
+    const MIN_COMMENT_INTERVAL = 30000; // 30 seconds between comments
+    
+    $('#commentForm').on('submit', function(e) {
+        e.preventDefault();
+        
+        var name = $('#commentName').val().trim();
+        var email = $('#commentEmail').val().trim();
+        var comment = $('#commentText').val().trim();
+        
+        // Validation
+        if (!validateForm(name, email, comment)) {
+            return;
+        }
+        
+        // Spam protection - time between comments
+        var currentTime = new Date().getTime();
+        if (currentTime - lastCommentTime < MIN_COMMENT_INTERVAL) {
+            showMessage('Please wait a moment before posting another comment.', 'error');
+            return;
+        }
+        
+        // Spam protection - comment length
+        if (comment.length < 10) {
+            showMessage('Comment must be at least 10 characters long.', 'error');
+            return;
+        }
+        
+        if (comment.length > 1000) {
+            showMessage('Comment is too long. Maximum 1000 characters allowed.', 'error');
+            return;
+        }
+        
+        // Disable submit button during processing
+        var submitBtn = $(this).find('.theme-btn');
+        var originalText = submitBtn.html();
+        submitBtn.prop('disabled', true).html('Posting... <i class="far fa-spinner fa-spin"></i>');
+        
+        // Simulate processing delay
+        setTimeout(function() {
+            createNewComment(name, comment);
+            $('#commentForm')[0].reset();
+            showMessage('Thank you! Your comment has been posted successfully.', 'success');
+            lastCommentTime = new Date().getTime();
+            
+            // Re-enable button
+            submitBtn.prop('disabled', false).html(originalText);
+        }, 1500);
+    });
+    
+    function validateForm(name, email, comment) {
+        if (name === '' || email === '' || comment === '') {
+            showMessage('Please fill in all required fields.', 'error');
+            return false;
+        }
+        
+        if (name.length < 2) {
+            showMessage('Name must be at least 2 characters long.', 'error');
+            return false;
+        }
+        
+        if (!isValidEmail(email)) {
+            showMessage('Please enter a valid email address.', 'error');
+            return false;
+        }
+        
+        return true;
+    }
+    
+    function isValidEmail(email) {
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+    
+    function showMessage(message, type) {
+        var messageDiv = $('#commentMessage');
+        messageDiv.removeClass('alert-success alert-danger');
+        
+        var styles = type === 'success' ? {
+            'background': '#d4edda',
+            'color': '#155724',
+            'border': '1px solid #c3e6cb'
+        } : {
+            'background': '#f8d7da',
+            'color': '#721c24',
+            'border': '1px solid #f5c6cb'
+        };
+        
+        messageDiv.addClass('alert-' + type).css(styles).html(
+            '<i class="far ' + (type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle') + '"></i> ' + message
+        ).slideDown();
+        
+        setTimeout(function() {
+            messageDiv.slideUp();
+        }, 5000);
+    }
+    
+    function createNewComment(name, comment) {
+        var currentDate = new Date();
+        var dateString = currentDate.toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+        
+        var avatarNumber = (name.length % 3) + 1;
+        var avatarSrc = 'assets/img/blog/com-' + avatarNumber + '.jpg';
+        
+        var newComment = $(
+            '<div class="blog-comments-single" style="display:none;">' +
+            '    <img src="' + avatarSrc + '" alt="' + name + '">' +
+            '    <div class="blog-comments-content">' +
+            '        <h5>' + escapeHtml(name) + '</h5>' +
+            '        <span><i class="far fa-clock"></i> ' + dateString + '</span>' +
+            '        <p>' + escapeHtml(comment).replace(/\n/g, '<br>') + '</p>' +
+            '        <a href="#" class="reply-btn"><i class="far fa-reply"></i> Reply</a>' +
+            '    </div>' +
+            '</div>'
+        );
+        
+        $('.blog-comments-wrapper').prepend(newComment);
+        newComment.slideDown(400);
+        updateCommentsCount();
+        
+        // Add reply functionality
+        newComment.find('.reply-btn').on('click', function(e) {
+            e.preventDefault();
+            $('#commentText').focus().val('@' + name + ': ').trigger('input');
+            $('html, body').animate({
+                scrollTop: $('#commentForm').offset().top - 100
+            }, 500);
+        });
+    }
+    
+    function escapeHtml(text) {
+        var div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+    
+    function updateCommentsCount() {
+        var commentsCount = $('.blog-comments-single').length;
+        var countText = commentsCount + ' Comment' + (commentsCount !== 1 ? 's' : '');
+        $('.blog-comments h4').text(countText);
+    }
+    
+    updateCommentsCount();
+});
 
 })(jQuery);
 
