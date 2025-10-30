@@ -84,13 +84,10 @@
                     </div>
                     <div class="collapse navbar-collapse" id="main_nav">
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown">Home</a>
-                                <ul class="dropdown-menu fade-up">
-                                    <li><a class="dropdown-item" href="index.html">Home Page 01</a></li>
-                                    <li><a class="dropdown-item" href="index-2.html">Home Page 02</a></li>
-                                    <li><a class="dropdown-item" href="index-3.html">Home Page 03</a></li>
-                                </ul>
+                            <li class="nav-item">
+                            <li class="nav-item">
+                                <a class="nav-link " href="index.html">Home</a>
+                            </li>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Coaching</a>
@@ -163,7 +160,7 @@
                                 <a href="#" class="search-box-outer"><i class="far fa-search"></i></a>
                             </div>
                             <div class="header-btn">
-                                <a href="#" class="theme-btn">GET QUOTE<i class="far fa-arrow-right"></i></a>
+                                <a href="index.html#quote1" class="theme-btn">GET QUOTE<i class="far fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -213,10 +210,15 @@
                             <div class="contact-form">
                                 <div class="contact-form-header">
                                     <h2>Get In Touch</h2>
-                                    <p>It is a long established fact that a reader will be distracted by the readable
-                                        content of a page when looking at its layout. </p>
+                                    <p>Have questions about visa applications? Our expert consultants are here to help
+                                        you with personalized guidance and support.</p>
                                 </div>
                                 <form method="post" action="https://formspree.io/f/mrbokzrd" id="contact-form">
+                                    <!-- ✅ Add these hidden fields -->
+                                    <input type="hidden" name="_subject" value="📞 Contact Form - Visa Agency Website">
+                                    <input type="hidden" name="form_source" value="Contact Page">
+                                    <input type="hidden" name="_captcha" value="false">
+
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -239,8 +241,8 @@
                                         <textarea name="message" cols="30" rows="5" class="form-control"
                                             placeholder="Write Your Message" required></textarea>
                                     </div>
-                                    <button type="submit" class="theme-btn">Send
-                                        Message <i class="far fa-paper-plane"></i></button>
+                                    <button type="submit" class="theme-btn">Send Message <i
+                                            class="far fa-paper-plane"></i></button>
                                     <div class="col-md-12 mt-3">
                                         <div class="form-messege text-success"></div>
                                     </div>
@@ -411,8 +413,12 @@
                             <div class="footer-newsletter">
                                 <p>Subscribe Our Newsletter To Get Latest Update And News And Stay Connected</p>
                                 <div class="subscribe-form">
-                                    <form action="#">
-                                        <input type="email" class="form-control" placeholder="Your Email">
+                                    <form action="https://formspree.io/f/mrbokzrd" method="POST" id="newsletter-form">
+                                        <input type="hidden" name="_subject"
+                                            value="📧 Newsletter Subscription - Visa Agency">
+                                        <input type="hidden" name="subscription_source" value="Footer Newsletter">
+                                        <input type="email" name="email" class="form-control" placeholder="Your Email"
+                                            required>
                                         <button class="theme-btn" type="submit">
                                             Subscribe Now <i class="far fa-paper-plane"></i>
                                         </button>

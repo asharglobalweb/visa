@@ -271,13 +271,49 @@ $('a[href^="#quote1"]').on('click', function (e) {
         var headerHeight = $('.header').outerHeight(true) || 0;
 
         // Add a little more offset (extra 80px padding)
-        var totalOffset = headerHeight + 105;
+        var totalOffset = headerHeight + 155;
 
         $('html, body').animate({
             scrollTop: target.offset().top - totalOffset
         }, 1200, 'easeInOutExpo');
     }
 });
+// Smooth scroll to quote section (extra offset for fixed header)
+$('a[href^="#quote1"]').on('click', function (e) {
+    e.preventDefault();
+
+    var target = $(this.getAttribute('href'));
+    if (target.length) {
+        // Get total header height (including margins)
+        var headerHeight = $('.header').outerHeight(true) || 0;
+
+        // Add a little more offset (extra 80px padding)
+        var totalOffset = headerHeight + 155;
+
+        $('html, body').animate({
+            scrollTop: target.offset().top - totalOffset
+        }, 1200, 'easeInOutExpo');
+    }
+});
+
+// ✅ Perfect GET QUOTE positioning — works from any page instantly
+$(window).on('load', function() {
+    const hash = window.location.hash;
+
+    if (hash === '#quote1') {
+        const target = $(hash);
+
+        if (target.length) {
+            // Wait just enough for preloader and layout stabilization
+            const headerHeight = $('.header').outerHeight(true) || 0;
+            const totalOffset = headerHeight + 155;
+
+            // Instantly jump to the correct spot (no smooth scroll)
+            $('html, body').scrollTop(target.offset().top - totalOffset);
+        }
+    }
+});
+
 
 
 })(jQuery);
