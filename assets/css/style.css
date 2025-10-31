@@ -554,7 +554,6 @@ theme button
 }
 
 
-
 /* ===================
 container
 ====================== */
@@ -1406,6 +1405,19 @@ feature css
 .feature-item.active .feature-icon::before,
 .feature-item:hover .feature-icon::before{
   background: #031F4B;
+}
+/* --- Force white titles inside feature blocks --- */
+.feature-content h4,
+.feature-content h4 a {
+  color: #fff !important;
+}
+
+/* Optional: keep text white on hover/active states too */
+.feature-item.active .feature-content h4,
+.feature-item.active .feature-content h4 a,
+.feature-item:hover .feature-content h4,
+.feature-item:hover .feature-content h4 a {
+  color: #fff !important;
 }
 
 
@@ -2860,6 +2872,8 @@ quote css
   background-image: url(../img/quote/01.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  margin-top: 200px;
+  
 }
 
 .quote-content{
@@ -3990,4 +4004,21 @@ home 3
   }
   .animated-toggler { width:44px; height:44px; }
   .animated-toggler .toggler-bar { width:28px; }
+}
+/* --- FIX: Ensure desktop navbar shows properly --- */
+@media (min-width: 992px) {
+  .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto !important;
+  }
+  .navbar-toggler {
+    display: none !important;
+  }
+}
+/* --- Center navbar menu items --- */
+.navbar .navbar-nav {
+  margin: 0 auto !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
