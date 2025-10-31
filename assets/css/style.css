@@ -4022,3 +4022,27 @@ home 3
   justify-content: center;
   align-items: center;
 }
+/* Ensure dropdown has scroll functionality */
+.country-code-dropdown {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Style the scrollbar for better appearance */
+.country-code-dropdown::-webkit-scrollbar {
+    width: 8px;
+}
+
+.country-code-dropdown::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.country-code-dropdown::-webkit-scrollbar-thumb {
+    background: #FF0000;
+    border-radius: 4px;
+}
+
+.country-code-dropdown::-webkit-scrollbar-thumb:hover {
+    background: #031F4B;
+}
