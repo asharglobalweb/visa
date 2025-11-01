@@ -4046,3 +4046,202 @@ home 3
 .country-code-dropdown::-webkit-scrollbar-thumb:hover {
     background: #031F4B;
 }
+.blog-item-meta ul {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.blog-item-meta ul li {
+  margin-right: 0;
+  display: inline-flex;
+  align-items: center;
+}
+/* ===================
+Uniform Blog Card Height Fix
+=================== */
+.blog-item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 460px; /* adjust based on your design */
+}
+
+.blog-item-img img {
+  width: 100%;
+  height: 240px; /* consistent image height */
+  object-fit: cover;
+}
+
+.blog-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.blog-item-info p {
+  flex-grow: 1;
+  margin-bottom: 20px;
+}
+
+.blog-item .theme-btn {
+  align-self: flex-start;
+}
+/* =========================================
+Universal Blog Card Alignment & Equal Height
+========================================= */
+.blog-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 480px; /* universal base height for all cards */
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 40px 5px rgb(0 0 0 / 5%);
+  transition: all 0.3s ease-in-out;
+}
+
+.blog-item:hover {
+  transform: translateY(-10px);
+}
+
+.blog-item-img img {
+  width: 100%;
+  height: 240px; /* consistent image height */
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.blog-item-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 23px 30px 20px 30px;
+}
+
+.blog-item-info p {
+  flex-grow: 1;
+  margin-bottom: 20px;
+}
+
+.blog-item .theme-btn {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* Responsive tweak: adjust height on smaller screens */
+@media (max-width: 991px) {
+  .blog-item {
+    min-height: 420px;
+  }
+  .blog-item-img img {
+    height: 200px;
+  }
+}
+/* ===================
+Recent Post Widget Layout Fix
+====================== */
+
+.widget.recent-post {
+    position: relative;
+    display: block;
+}
+
+.widget.recent-post .recent-post-single {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.widget.recent-post .recent-post-single:last-child {
+    margin-bottom: 0;
+}
+
+.widget.recent-post .recent-post-img {
+    margin-right: 15px;
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.widget.recent-post .recent-post-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.widget.recent-post .recent-post-bio {
+    flex: 1;
+    padding: 0;
+}
+
+.widget.recent-post .recent-post-bio h6 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+.widget.recent-post .recent-post-bio h6 a {
+    color: #031F4B;
+    transition: all 0.3s ease-in-out;
+}
+
+.widget.recent-post .recent-post-bio h6 a:hover {
+    color: #FF0000;
+}
+
+.widget.recent-post .recent-post-bio span {
+    font-size: 14px;
+    color: #757F95;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.widget.recent-post .recent-post-bio span i {
+    color: #FF0000;
+    font-size: 14px;
+}
+
+/* Ensure consistent spacing */
+.widget.recent-post .recent-post-single + .recent-post-single {
+    margin-top: 0;
+}
+
+/* Mobile responsiveness */
+@media all and (max-width: 767px) {
+    .widget.recent-post .recent-post-img {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .widget.recent-post .recent-post-bio h6 {
+        font-size: 15px;
+    }
+}
+/* Remove testimonial author image cleanly */
+.testimonial-author-img {
+  display: none !important;
+}
+
+.testimonial-item {
+  text-align: center;
+  padding-top: 30px;
+}
+
+.testimonial-item p {
+  margin-top: 15px;
+}
+ 
